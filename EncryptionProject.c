@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+//had to do something for class
 int Encrypt(char * FILENAME, char * OUTPUT) {
 
     char key1[] = "", key2[] = "";  //Empty keys to take in input
