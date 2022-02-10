@@ -80,7 +80,7 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
 
         if(strlen(key1) != 1) {printf("Error:Re-Enter, A Character or Single Digit For Key1: \n");}
         else if(key1 == NULL || key1[0] == '\0') {printf("Empty, A Character or A Single Digit: \n");}
-    }//Take in input with error checking
+    } //Take in input with error checking
 
     printf("Enter the Second Key: (A Character or A Single Digit)\n");
     while(key2 == NULL || key2[0] == '\0' || strlen(key2) != 1) {
@@ -117,7 +117,7 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
                     exit(3);
                 }
             }
-            while ((Byte = fgetc(inF)) != EOF) {//Second Iteration od Decryption Algorithm
+            while ((Byte = fgetc(inF)) != EOF) { //Second Iteration od Decryption Algorithm
 
                 Byte = (Byte ^ key2[0]) & 0xFF;
                 if (fputc(Byte, outF) == EOF) {
