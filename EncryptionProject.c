@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-//had to do something for class
+
 int Encrypt(char * FILENAME, char * OUTPUT) {
 
     char key1[] = "", key2[] = "";  //Empty keys to take in input
@@ -13,7 +13,7 @@ int Encrypt(char * FILENAME, char * OUTPUT) {
 
         if(strlen(key1) != 1) {printf("Error:Re-Enter, A Character or Single Digit For Key1: \n");}
         else if(key1 == NULL || key1[0] == '\0') {printf("Empty, A Character or A Single Digit: \n");}
-    }//Take in input with error checking
+    } //Take in input with error checking
 
     printf("Enter the Second Key: (A Character or A Single Digit)\n");
     while(key2 == NULL || key2[0] == '\0' || strlen(key2) != 1) {
@@ -21,10 +21,10 @@ int Encrypt(char * FILENAME, char * OUTPUT) {
 
         if(strlen(key2) != 1) {printf("Error:Re-Enter, A Character or Single Digit For Key2: \n");}
         else if(key2 == NULL || key2[0] == '\0') {printf("Empty, A Character or A Single Digit: \n");}
-    }//Take in input with error checking
+    } //Take in input with error checking
 
-    FILE *inF;//input file pointer
-    FILE *outF;//output file pointer
+    FILE *inF; //input file pointer
+    FILE *outF; //output file pointer
     unsigned int Byte;
     unsigned char left;
     unsigned char right;
@@ -32,10 +32,10 @@ int Encrypt(char * FILENAME, char * OUTPUT) {
     inF = fopen(FILENAME,"r"); //file to be read from
     outF = fopen(OUTPUT, "w");  //file that will be written to
 
-    if (0 != access(OUTPUT, W_OK)) {//check if output file can be written to, if not exit
+    if (0 != access(OUTPUT, W_OK)) { //check if output file can be written to, if not exit
         printf("Output File Cannot be Written To: \n");
         exit(1);
-    }//error checking
+    } //error checking
 
     if(inF == NULL) {
         printf("Error in Opening File or File Does Not Exist. \n");
@@ -66,7 +66,7 @@ int Encrypt(char * FILENAME, char * OUTPUT) {
             }
     printf("\nEnd of File, Successfully Encrypted. \n");
     }
-    fclose(inF);//close to prevent memory leak
+    fclose(inF); //close to prevent memory leak
     fclose(outF);
 }
 
@@ -88,7 +88,7 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
 
         if(strlen(key2) != 1) {printf("Error:Re-Enter, A Character or Single Digit For Key2: \n");}
         else if(key2 == NULL || key2[0] == '\0') {printf("Empty, A Character or A Single Digit: \n");}
-    }//Take in input with error checking
+    } //Take in input with error checking
 
     FILE *inF;
     FILE *outF;
@@ -127,7 +127,7 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
             }
     printf("\nEnd of File, Successfully Decrypted. \n");
     }
-    fclose(inF);//close to prevent memory leak
+    fclose(inF); //close to prevent memory leak
     fclose(outF);
 }
 
