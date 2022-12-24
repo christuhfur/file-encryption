@@ -12,7 +12,7 @@ Hello, have a great day and enjoy the weather!
 
 ---The encrypted file might look something like the following depending on what keys are used:
 
-5*$b$,%b.$a6)'a1$/$15'3b(1a,$#3lLHsrsra* 1a $'/b b7'3;a150 ,&'a;$#3lLH+2*(,&b .-b.$a;.7a#a
+BYUTq 1$%#$$%&bchre qvR&^*%^%^&*6f detyif%^*5 
 
 ---Then when you decrypt the file, encrypt.txt, it should return back to:
 
