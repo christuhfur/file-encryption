@@ -42,6 +42,11 @@ int Encrypt(char * FILENAME, char * OUTPUT) {
         exit(2);
     } else {
         printf("File Opened, Encrypting Destination: encryptedOuput.txt \n");
+        
+        /*
+        Encryption Algorithm utilizes bit shifting and shifts the binary representation of each character
+        to the left or right by a pre-defined number of positions.
+        */
             while ((Byte = fgetc(inF)) != EOF) { //Implement Encryption algorithm
 
                 left = Byte & ( (1<<8) -1);
@@ -110,6 +115,13 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
     } else {
         printf("File Opened, Decrypting Destination: decryptedOuput.txt \n");
         while ((Byte = fgetc(inF)) != EOF) {
+            
+        /*
+        Encryption Algorithm utilizes bit shifting and shifts the binary representation of each character
+        to the left or right by a pre-defined number of positions.
+        Decryption algorithm moves the bits to before original position of the shifted bits, thus revealing
+        the original message within the .txt file/
+        */
 
                 Byte = (Byte ^ key1[0]) & 0xFF; //First Iteration of Decryption Algorithm
                 if (fputc(Byte, outF) == EOF) {
@@ -133,26 +145,26 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
 
 int main() {
 
-    char data[500], choice, encFile[550] = "encryptedOutput.txt"; //data file and output file
-    char decFile[550] = "decryptedOutput.txt";  //allcoted more space for output, will not be same size as data file.
+    char data[500], choice[51], encFile[550] = "encryptedOutput.txt"; //data file and output file
+    char decFile[550] = "decryptedOutput.txt";  //allocated more space for output, will not be same size as data file.
 
     printf("Enter E to Encrypt a File or D to Decrypt an Existing File: \n"); //prompt user
 
     while(choice != 'E' && choice != 'D') {
 
-        scanf(" %c", &choice);
+        scanf(" %50c", &choice);
         if(choice != 'E' && choice != 'D') {printf("Error: Re-Enter E or D: \n");}
                 //error checking, re enter if incorrect.
     }
     //choice of decryption or encryption for based on user input.
     if(choice == 'E') {
         printf("Enter the Source Filename: \n");//file to encrypt
-        scanf("%s",data);
+        scanf(" %s",data);
         Encrypt(data, encFile); //do Encryption
     }
     else if(choice == 'D') {
         printf("Enter Filename to be Decrypted: \n");//file to be decrypted(must be encrypted)
-        scanf("%s",data);
+        scanf(" %s",data);
         Decrypt(data, decFile); //do Decryption
     }
     return 0;
