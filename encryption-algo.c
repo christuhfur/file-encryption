@@ -119,7 +119,7 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
         /*
         Encryption Algorithm utilizes bit shifting and shifts the binary representation of each character
         to the left or right by a pre-defined number of positions.
-        Decryption algorithm moves the bits to before original position of the shifted bits, thus revealing
+        Decryption algorithm moves the bits to the original position of the shifted bits, thus revealing
         the original message within the .txt file/
         */
 
