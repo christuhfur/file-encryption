@@ -12,8 +12,8 @@ Hello, have a great day and enjoy the weather!
 
 ---The encrypted file might look something like the following depending on what keys are used:
 
-BYUTq 1$%#$$%&bchre qvR&^*%^%^&*6f detyif%^*5 
+zW^^]ZSDWSU@WSFVSKS\VW\X]KFZWEWSFZW@
 
 ---Then when you decrypt the file, encrypt.txt, it should return back to:
 
-Hello, have a great day and enjoy the weather.
+Hello, have a great day and enjoy the weather!
