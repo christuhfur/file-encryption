@@ -16,11 +16,11 @@ int Encrypt(char * FILENAME, char * OUTPUT) {
         scanf(" %c", &key1);
         
         if(isdigit(key1) || isspace(key1) || isalpha(key1)) {
-            inputcheck1 = 1;
+            inputcheck1 = 1; //exit loop when one of the conditions are met
         }
         
         else { printf("Error:Re-Enter, A Character or Single Digit For Key1: \n"); }
-    }
+    } //Input with error checking for first key.
     
     int inputcheck2 = 0;
     printf("Enter the Second Key: (A Character or A Single Digit)\n");
@@ -29,10 +29,10 @@ int Encrypt(char * FILENAME, char * OUTPUT) {
         scanf(" %c", &key2);
         
         if(isdigit(key2) || isspace(key2) || isalpha(key2)) {
-            inputcheck2 = 1;
+            inputcheck2 = 1; //exit loop when one of the condition are met.
         }
         else { printf("Error:Re-Enter, A Character or Single Digit For Key2: \n"); }
-    }
+    } //Input with error checking for second key.
     
     
     FILE *inF; //input file pointer
@@ -99,7 +99,7 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
         scanf(" %c", &key1);
         
         if(isdigit(key1) || isspace(key1) || isalpha(key1)) {
-            inputcheck1 = 1;
+            inputcheck1 = 1; //exit loop when one of the condition are met
         }
         
         else { printf("Error:Re-Enter, A Character or Single Digit For Key1: \n"); }
@@ -112,7 +112,7 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
         scanf(" %c", &key2);
         
         if(isdigit(key2) || isspace(key2) || isalpha(key2)) {
-            inputcheck2 = 1;
+            inputcheck2 = 1; //exit loop when one of the conditions are met.
         }
         else { printf("Error:Re-Enter, A Character or Single Digit For Key2: \n"); }
     }
