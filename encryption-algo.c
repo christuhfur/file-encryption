@@ -2,27 +2,39 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h> 
 
 int Encrypt(char * FILENAME, char * OUTPUT) {
-
-    char key1[] = "", key2[] = "";  //Empty keys to take in input
-
+    
+    char key1 = "";
+    char key2 = "";
+    
+    int inputcheck1 = 0;
     printf("Enter the First Key: (A Character or A Single Digit)\n");
-    while(key1 == NULL || key1[0] == '\0' || strlen(key1) != 1) {
-        scanf(" %s", key1);
-
-        if(strlen(key1) != 1) {printf("Error:Re-Enter, A Character or Single Digit For Key1: \n");}
-        else if(key1 == NULL || key1[0] == '\0') {printf("Empty, A Character or A Single Digit: \n");}
-    } //Take in input with error checking
-
+    while(inputcheck1 == 0) {
+        
+        scanf(" %c", &key1);
+        
+        if(isdigit(key1) || isspace(key1) || isalpha(key1)) {
+            inputcheck1 = 1;
+        }
+        
+        else { printf("Error:Re-Enter, A Character or Single Digit For Key1: \n"); }
+    }
+    
+    int inputcheck2 = 0;
     printf("Enter the Second Key: (A Character or A Single Digit)\n");
-    while(key2 == NULL || key2[0] == '\0' || strlen(key2) != 1) {
-        scanf(" %s", key2);
-
-        if(strlen(key2) != 1) {printf("Error:Re-Enter, A Character or Single Digit For Key2: \n");}
-        else if(key2 == NULL || key2[0] == '\0') {printf("Empty, A Character or A Single Digit: \n");}
-    } //Take in input with error checking
-
+    while(inputcheck2 == 0) {
+        
+        scanf(" %c", &key2);
+        
+        if(isdigit(key2) || isspace(key2) || isalpha(key2)) {
+            inputcheck2 = 1;
+        }
+        else { printf("Error:Re-Enter, A Character or Single Digit For Key2: \n"); }
+    }
+    
+    
     FILE *inF; //input file pointer
     FILE *outF; //output file pointer
     unsigned int Byte;
@@ -51,7 +63,7 @@ int Encrypt(char * FILENAME, char * OUTPUT) {
 
                 left = Byte & ( (1<<8) -1);
                 right = Byte & ( (9<<16) -1);
-                left = left ^ key1[0];
+                left = left ^ key1;
                 Byte = (right << 8) | left;
                 if (fputc(Byte, outF) == EOF) {
                     printf("Error");
@@ -62,7 +74,7 @@ int Encrypt(char * FILENAME, char * OUTPUT) {
 
                 left = Byte & ( (1<<8) -1);
                 right = Byte & ( (9<<16) -1);
-                left = left ^ key2[0];
+                left = left ^ key2;
                 Byte = (right << 8) | left;
                 if (fputc(Byte, outF) == EOF) {
                     printf("Error");
@@ -76,25 +88,35 @@ int Encrypt(char * FILENAME, char * OUTPUT) {
 }
 
 int Decrypt(char * FILENAME, char * OUTPUT) {
-
-    char key1[] = "", key2[] = "";  //Empty keys to take in input
-
+    
+    char key1 = "";
+    char key2 = "";
+    
+    int inputcheck1 = 0;
     printf("Enter the First Key: (A Character or A Single Digit)\n");
-    while(key1 == NULL || key1[0] == '\0' || strlen(key1) != 1) {
-        scanf(" %s", key1);
-
-        if(strlen(key1) != 1) {printf("Error:Re-Enter, A Character or Single Digit For Key1: \n");}
-        else if(key1 == NULL || key1[0] == '\0') {printf("Empty, A Character or A Single Digit: \n");}
-    } //Take in input with error checking
-
+    while(inputcheck1 == 0) {
+        
+        scanf(" %c", &key1);
+        
+        if(isdigit(key1) || isspace(key1) || isalpha(key1)) {
+            inputcheck1 = 1;
+        }
+        
+        else { printf("Error:Re-Enter, A Character or Single Digit For Key1: \n"); }
+    }
+    
+    int inputcheck2 = 0;
     printf("Enter the Second Key: (A Character or A Single Digit)\n");
-    while(key2 == NULL || key2[0] == '\0' || strlen(key2) != 1) {
-        scanf(" %s", key2);
-
-        if(strlen(key2) != 1) {printf("Error:Re-Enter, A Character or Single Digit For Key2: \n");}
-        else if(key2 == NULL || key2[0] == '\0') {printf("Empty, A Character or A Single Digit: \n");}
-    } //Take in input with error checking
-
+    while(inputcheck2 == 0) {
+        
+        scanf(" %c", &key2);
+        
+        if(isdigit(key2) || isspace(key2) || isalpha(key2)) {
+            inputcheck2 = 1;
+        }
+        else { printf("Error:Re-Enter, A Character or Single Digit For Key2: \n"); }
+    }
+    
     FILE *inF;
     FILE *outF;
     unsigned int Byte;
@@ -123,7 +145,7 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
         the original message within the .txt file/
         */
 
-                Byte = (Byte ^ key1[0]) & 0xFF; //First Iteration of Decryption Algorithm
+                Byte = (Byte ^ key1) & 0xFF; //First Iteration of Decryption Algorithm
                 if (fputc(Byte, outF) == EOF) {
                     printf("Error");
                     exit(3);
@@ -131,7 +153,7 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
             }
             while ((Byte = fgetc(inF)) != EOF) { //Second Iteration od Decryption Algorithm
 
-                Byte = (Byte ^ key2[0]) & 0xFF;
+                Byte = (Byte ^ key2) & 0xFF;
                 if (fputc(Byte, outF) == EOF) {
                     printf("Error");
                     exit(4);
@@ -145,14 +167,14 @@ int Decrypt(char * FILENAME, char * OUTPUT) {
 
 int main() {
 
-    char data[500], choice[51], encFile[550] = "encryptedOutput.txt"; //data file and output file
+    char data[500], choice, encFile[550] = "encryptedOutput.txt"; //data file and output file
     char decFile[550] = "decryptedOutput.txt";  //allocated more space for output, will not be same size as data file.
 
     printf("Enter E to Encrypt a File or D to Decrypt an Existing File: \n"); //prompt user
 
     while(choice != 'E' && choice != 'D') {
 
-        scanf(" %50c", &choice);
+        scanf(" %c", &choice);
         if(choice != 'E' && choice != 'D') {printf("Error: Re-Enter E or D: \n");}
                 //error checking, re enter if incorrect.
     }
