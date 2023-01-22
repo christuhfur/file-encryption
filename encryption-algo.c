@@ -174,7 +174,7 @@ int main() {
 
     while(choice != 'E' && choice != 'D') {
 
-        sscanf("%100s%n", &choice);          
+        scanf(" %100s", &choice);           
         if(choice != 'E' && choice != 'D') {printf("Error: Re-Enter E or D: \n");}
                 //error checking, re enter if incorrect.
     }
