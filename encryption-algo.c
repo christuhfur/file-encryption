@@ -174,7 +174,7 @@ int main() {
 
     while(choice != 'E' && choice != 'D') {
 
-        scanf(" %c", &choice);          //potential segmentation fault here if too large of an input is taken in.
+        sscanf("%100s%n", &choice);          
         if(choice != 'E' && choice != 'D') {printf("Error: Re-Enter E or D: \n");}
                 //error checking, re enter if incorrect.
     }
